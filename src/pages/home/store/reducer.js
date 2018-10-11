@@ -1,22 +1,22 @@
 import {
     fromJS
 } from 'immutable';
-;
+import * as actionTypes from './constants';
+
 const defaultState = fromJS({
-    topicList:[{
-        id: 1,
-        title: "社会热点",
-        imgUrl: "//upload.jianshu.io/collections/images/95/1.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
-    },{
-        id: 2,
-        title: "手绘",
-        imgUrl: "//upload.jianshu.io/collections/images/95/1.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
-    }]
+    topicList:[],
+    articleList: [],
+    recommendList: []
 });
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-
+        case actionTypes.CHANGE_HOME_DATA:
+            return state.merge({
+                topicList: fromJS(action.topicList) ,
+                articleList: fromJS(action.articleList),
+                recommendList: fromJS(action.recommendList)
+            })
         default:
             return state;
     }
